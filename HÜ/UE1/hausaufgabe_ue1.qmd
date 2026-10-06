@@ -8,7 +8,7 @@ format: html
 # 1 · Setup + erstes Ritual
 
 ```{r}
-#| label: setup
+# label: setup
 
 # -- Einmal pro Rechner (nur ausführen, wenn noch nicht geschehen!) --
 # install.packages("tidyverse")
@@ -20,7 +20,7 @@ library(palmerpenguins)
 ```
 
 ```{r}
-#| label: glimpse
+# label: glimpse
 glimpse(penguins)
 ```
 
