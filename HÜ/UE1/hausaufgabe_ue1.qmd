@@ -1,7 +1,7 @@
 ---
-title: "HA UE 1 — Daten visualisieren"
-author: "Name, Klasse"
-date: today
+title: "HÜ - Daten visualisieren"
+author: "Suad Bajraktarovic, 4AHWIT"
+date: 06.10.2026
 format: html
 ---
 
