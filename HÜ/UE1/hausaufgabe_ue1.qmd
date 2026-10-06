@@ -8,9 +8,8 @@ format: html
 # 1 · Setup + erstes Ritual
 
 ```{r}
-# label: setup
+#| label: setup
 
-# -- Einmal pro Rechner (nur ausführen, wenn noch nicht geschehen!) --
 # install.packages("tidyverse")
 # install.packages("palmerpenguins")
 
@@ -20,11 +19,9 @@ library(palmerpenguins)
 ```
 
 ```{r}
-# label: glimpse
+#| label: glimpse
 glimpse(penguins)
 ```
-
-*Antworten aus der Konsole hier eintragen:*
 
 - Wie viele Zeilen (Pinguine)? 344
 - Wie viele Spalten? 8
@@ -36,7 +33,7 @@ glimpse(penguins)
 # 2 · Die Einstiegsfrage nachbauen
 
 ```{r}
-# label: zielbild
+#| label: zielbild
 ggplot(penguins,
        aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
   geom_point() +
@@ -51,31 +48,32 @@ ggplot(penguins,
 # 3 · Vorhersagen (erst schreiben, dann ausführen!)
 
 ## a) Zwei Zeilen im Vergleich
-Ganz einfach: beim ersten Code (ggplot()...) werden alle Punkte ro gefärbt.
-Beim zweiten Code, werden die einzelnen Arten in einer jeweiligen Farbe eingefärbt.Und dadurch kann dann klar unterschieden werden zwischen den drei Kategorien.
+
+Ganz einfach: beim ersten Code (ggplot()...) werden alle Punkte rot gefärbt.
+Beim zweiten Code werden die einzelnen Arten in einer jeweiligen Farbe eingefärbt. Und dadurch kann dann klar unterschieden werden zwischen den drei Kategorien.
 
 ```{r}
-# label: vorhersage-a
+#| label: vorhersage-a
 ggplot(penguins, aes(x = species, y = body_mass_g)) + geom_point(color = "red")
 
 ggplot(penguins, aes(x = species, y = body_mass_g, color = species)) + geom_point()
 ```
 
-Im ersten Plot sind alle Punkte Rot, es ist keine Legende vorhanden. 
-Im zweiten Plot wird jeder Art eine eigene Farbe inklusive Legende gegeben. 
+Im ersten Plot sind alle Punkte rot, es ist keine Legende vorhanden.
+Im zweiten Plot wird jeder Art eine eigene Farbe inklusive Legende gegeben.
 Vom Inhalt her wird bei beiden Grafiken genau das gleiche Ergebnis dargestellt. Man erkennt, dass die Gentoo am schwersten sind und die Adelie am leichtesten.
 
 ## b) Das + am Zeilenanfang
 
-Der Code bis hin zum "+" wird Fehlerfrei verlaufen. Es wird ein lehrer Diagramm veranschaulicht ohne Inhalt. R denkt der Ausdruck wäre zuende.
+Der Code bis hin zum "+" verläuft fehlerfrei. Es wird ein leeres Diagramm ohne Inhalt veranschaulicht. R denkt, der Ausdruck wäre zu Ende.
 
 ```{r}
-# label: vorhersage-b
+#| label: vorhersage-b
 ggplot(penguins, aes(x = body_mass_g))
   + geom_histogram(binwidth = 250)
 ```
 
-Man sieht einen lehren Plot und eine Fehlermeldung (Error...). Das "+" gehört ans Zeilenende, somit weiß R, dass der Ausdruck noch nicht zuende ist.
+Man sieht einen leeren Plot und eine Fehlermeldung (Error...). Das "+" gehört ans Zeilenende, somit weiß R, dass der Ausdruck noch nicht zu Ende ist.
 
 ---
 
@@ -83,34 +81,29 @@ Man sieht einen lehren Plot und eine Fehlermeldung (Error...). Das "+" gehört a
 
 Frage: Haben Pinguine mit längeren Schnabeln auch mehr Gewicht?
 
-Zwei Zahlen-Spalten der Pinguine eintragen:
-`bill_length_mm` (Schnabellänge), `bill_depth_mm` (Schnabentiefe),
-`flipper_length_mm` (Flossengröße), `body_mass_g` (Körpermasse)
-
 ```{r}
-# label: eigene-frage
+#| label: eigene-frage
 ggplot(penguins,
-       aes(x = bill_length_mm, y = body_mass_g, color = species)) +   # <- hier eigene Spalten eintragen
+       aes(x = bill_length_mm, y = body_mass_g, color = species)) +
   geom_point() +
   geom_smooth() +
-  labs(x = "Schnabellänge (mm)", y = "Körpermasse (g)",               # <- Titel hinzufügen
-       title = "Meine eigene Frage")
+  labs(x = "Schnabellänge (mm)", y = "Körpermasse (g)",
+       title = "Längere Schnäbel, mehr Gewicht?")
 ```
 
-Er zeigt, es gibt einen zusammenhang. Also Pinguine mit längeren Schnabeln wiegen im durchschnitt mehr. Mit Hilfe der Trendlinien können wir sehen, dass bei allen drei Arten die Masse in etwa gleich stark ansteigt.
+Er zeigt, es gibt einen Zusammenhang. Also Pinguine mit längeren Schnäbeln wiegen im Durchschnitt mehr. Mit Hilfe der Trendlinien können wir sehen, dass bei allen drei Arten die Masse in etwa gleich stark ansteigt.
 
 ---
 
 # 5 · Kapitel-Check (Kap. 2 — Workflow: basics)
 
-
 - Warum steht das `+` in ggplot2 immer am Zeilenende — was passiert
   technisch, wenn du es ans Zeilenanfang stellst? Wie meldet sich R?
 
-Wenn das "+" am Zeilenende steht, sagen wir R damit, dass der Code weitergeht. Steht es am Anfang, glaubt es, die vorherige Zeile wäre zuende. Dann meldet es einen Fehler. 
+Wenn das "+" am Zeilenende steht, sagen wir R damit, dass der Code weitergeht. Steht es am Anfang, glaubt es, die vorherige Zeile wäre zu Ende. Dann meldet es einen Fehler.
 
 - Warum speichert man Werte mit `<-` in einem Skript, statt sie in der
   Konsole direkt auszurechnen?
 
-Weil alle Werte im Skript direkt gespeichert bleiben, wenn man einen Vorgang den man gespeichert hat wiederholt, bekommt man das selbe Ergebnis wie vorher. 
-In der Konsole existiert es nur in der aktuellen Zeile, später dann nicht mehr. Also wenn man R schließt, geht de Eintragung verloren.
+Weil alle Werte im Skript gespeichert bleiben. Wenn man einen Vorgang, den man gespeichert hat, wiederholt, bekommt man dasselbe Ergebnis wie vorher.
+In der Konsole existiert es nur in der aktuellen Sitzung, später dann nicht mehr. Also wenn man R schließt, geht die Eintragung verloren.
