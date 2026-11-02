@@ -9,6 +9,8 @@ format: html
 
 ```{r}
 #| label: setup
+#| message: false
+#| warning: false
 
 # install.packages("tidyverse")
 # install.packages("palmerpenguins")
@@ -69,6 +71,7 @@ Der Code bis hin zum "+" verläuft fehlerfrei. Es wird ein leeres Diagramm ohne 
 
 ```{r}
 #| label: vorhersage-b
+#| error: true
 ggplot(penguins, aes(x = body_mass_g))
   + geom_histogram(binwidth = 250)
 ```
@@ -105,5 +108,4 @@ Wenn das "+" am Zeilenende steht, sagen wir R damit, dass der Code weitergeht. S
 - Warum speichert man Werte mit `<-` in einem Skript, statt sie in der
   Konsole direkt auszurechnen?
 
-Weil alle Werte im Skript gespeichert bleiben. Wenn man einen Vorgang, den man gespeichert hat, wiederholt, bekommt man dasselbe Ergebnis wie vorher.
-In der Konsole existiert es nur in der aktuellen Sitzung, später dann nicht mehr. Also wenn man R schließt, geht die Eintragung verloren.
+Mit `<-` bekommt ein Wert einen Namen. Über diesen Namen kann ich ihn später im Skript wiederverwenden, ohne die Zahl neu einzutippen, und das Skript liefert bei jedem Lauf dasselbe Ergebnis. Rechne ich nur in der Konsole, wird das Ergebnis zwar angezeigt, aber nirgends festgehalten: Es hängt an der aktuellen Sitzung und ist nach dem Schließen weg. Im Skript steht die ganze Rechnung außerdem nachvollziehbar in der Datei.
