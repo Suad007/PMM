@@ -1,0 +1,74 @@
+---
+title: "Schulübung 1 - Was kann R?"
+author: "Suad Bajraktarovic, 4AHWIT"
+date: "2026-10-06"
+format: html
+---
+
+# 1 · R rechnet - sofort
+
+```{r}
+2 + 2
+```
+
+**Beobachtung:** R gibt sofort `4` aus. Eine einzige Zeile reicht, weil R den
+Ausdruck direkt berechnet und das Ergebnis anzeigt.
+
+---
+
+# 2 · `<-` speichert, der Name holt zurück
+
+```{r}
+mittel <- 10.007
+mittel
+```
+
+**Beobachtung:** Mit `mittel <- 10.007` wird der Wert unter dem Namen `mittel`
+gespeichert. Die zweite Zeile holt ihn über den Namen wieder zurück. Ohne `<-`
+würde R die Zahl nur anzeigen, gespeichert wäre nichts.
+
+---
+
+# 3 · R rechnet mit Daten - Gruppen vergleichen
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+
+penguins |>
+  group_by(species) |>
+  summarise(mittel = mean(body_mass_g, na.rm = TRUE))
+```
+
+**Beobachtung:** Gentoo ist mit ca. 5076 g die schwerste Art. Adelie (3701 g)
+und Chinstrap (3733 g) liegen fast gleichauf, Gentoo ist also über ein Kilo
+schwerer. Die Pipe liest sich als Satz: nimm die Pinguine, gruppiere sie nach
+Art, fasse die mittlere Masse zusammen.
+
+---
+
+# 4 · R prüft - Zufall oder echter Unterschied?
+
+```{r}
+t.test(body_mass_g ~ sex, data = penguins)
+```
+
+**Beobachtung:** Der p-Wert ist mit 4,8 × 10⁻¹⁶ praktisch null. Der Unterschied
+zwischen Männchen und Weibchen ist damit statistisch signifikant und nicht durch
+Zufall erklärbar.
+
+---
+
+# 5 · Kurzreflexion
+
+**Warum steht dieser Code im Skript und nicht nur in der Konsole?**
+
+Ein Skript bleibt als Datei erhalten und lässt sich jederzeit wiederholen. Die
+Konsole gilt nur für die aktuelle Sitzung, nach dem Schließen von R ist die
+Eingabe weg.
+
+**Was bedeutet der p-Wert in Aufgabe 4 in einem Satz?**
+
+Der p-Wert gibt die Wahrscheinlichkeit an, ein mindestens so extremes Ergebnis
+zu beobachten, wenn in Wahrheit kein Unterschied besteht (Nullhypothese). Über
+die Stärke des Effekts sagt er nichts.
