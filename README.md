@@ -9,5 +9,5 @@ Probe zum pushen
 | Ordner | Inhalt |
 |---|---|
 | `HÜ/UE1/` | Hausaufgabe SA-01 - Daten visualisieren (Quarto) |
-| `HÜ/UE2/` | Schulübung ggplots - `demo.R` |
+| `HÜ/UE2/` | Schulübung ggplots - `demo.R` + `demo.qmd` |
 | `Schuluebungen/SUE1_Was_kann_R/` | Schulübung 1 - "Was kann R?" (Quarto) |

@@ -1,0 +1,49 @@
+---
+title: "Schulübung 2 - ggplots: Demo und Ergänzung"
+author: "Suad Bajraktarovic, 4AHWIT"
+date: "2026-10-13"
+format: html
+---
+
+# 1 · Demo aus der Stunde
+
+Eine Trendlinie über alle Arten: Die Körpermasse wird gegen das Geburtsjahr
+geplottet, `geom_smooth()` zeichnet den Trend.
+
+```{r}
+#| label: demo
+#| message: false
+#| warning: false
+
+library(ggplot2)
+library(palmerpenguins)
+
+ggplot(penguins,
+       aes(x = year, y = body_mass_g)) +
+  geom_smooth() +
+  labs(x = "Geburtsjahr (J)", y = "Körpermasse (g)")
+```
+
+# 2 · Eigene Ergänzung
+
+Die Art wird als Farbe gemappt, jede Art bekommt eine eigene Facette und einen
+Titel. Dadurch sieht man die drei Trends getrennt statt nur als eine Linie.
+
+```{r}
+#| label: ergaenzung
+#| warning: false
+ggplot(penguins,
+       aes(x = year, y = body_mass_g, color = species)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = FALSE) +
+  facet_wrap(~ species) +
+  labs(x = "Geburtsjahr (J)", y = "Körpermasse (g)",
+       color = "Art",
+       title = "Körpermasse der Pinguine nach Art (2007-2009)")
+```
+
+# 3 · Was die Ergänzung zeigt
+
+Gentoo liegt in allen drei Jahren deutlich über Adelie und Chinstrap. Die
+Trennschärfe kommt durch Farbe plus Facette: man erkennt die Art sofort und
+kann die drei Verläufe direkt nebeneinander vergleichen.
