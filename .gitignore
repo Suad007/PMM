@@ -1,4 +1,11 @@
-.Rproj.user/
+# Lokale Roh-Transkripte der Stundenwiederholung (public repo → nicht committen)
+transcript.md
+
+# R-Artefakte
 .RData
-.Ruserdata
-.positai
+.Rhistory
+
+# Zugangsdaten (public repo → niemals committen)
+.env
+selbststudium/last.R
+.Rproj.user/
